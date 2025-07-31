@@ -20,7 +20,6 @@ def schedule_jobs():
     for api_config in API_CONFIGS:
         interval = api_config.get('interval_seconds', 300)
         schedule.every(interval).seconds.do(check_api, api_config)
-        schedule.every(interval).seconds.do(alert_if_needed, api_config["api_name"])
 
 if __name__ == "__main__":
     schedule_jobs()
