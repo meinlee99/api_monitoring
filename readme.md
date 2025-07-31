@@ -6,12 +6,22 @@ This repository provides a robust system for monitoring the health, latency, and
 
 ---
 
+## Technical Deep Dive 
+
+- Please refer to these slides for trade-off discussions, deep dives, and other technical details:  
+  [API Monitoring System Design Slides](https://docs.google.com/presentation/d/1VURI8Zrqo3bxWt_HUR5Os0NilRA0m89MdG6VaxTkDTU/edit?usp=sharing)
+
+---
+
+
 ## Goals
 
 - User Friendly
 - Build Trust
 - Guarantee Efficiency
 - Drive Refinements
+
+---
 
 ## Key Use Cases
 
@@ -72,12 +82,6 @@ This repository provides a robust system for monitoring the health, latency, and
 - Add support for more alerting channels.
 - Enhance proactive checks (e.g., token expiry, rate limit headers).
 - Add vendor performance analytics.
-
----
-
-## Technical Deep Dive 
-
-- Please refer to these slides for trade-off discussions, deep dives, and other technical details
 
 ---
 
