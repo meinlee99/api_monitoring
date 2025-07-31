@@ -13,19 +13,19 @@ Please refer to these slides for trade-off discussions, deep dives, and other te
 
 ---
 
+## Pain Points
+- Unhandled API failures flows downstream to users, degrade the user experience and reduce customer satisfaction
+
+- Slow third-party API responses causes latency and impact overall application performance
+
+---
+
 ## Goals
 
 - User Friendly
 - Build Trust
 - Guarantee Efficiency
 - Drive Refinements
-
----
-
-## Pain Points
-- Unhandled API failures flows downstream to users, degrade the user experience and reduce customer satisfaction
-
-- Slow third-party API responses causes latency and impact overall application performance
 
 ---
 
