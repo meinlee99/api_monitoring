@@ -1,8 +1,8 @@
 import requests
 import time
 import sentry_sdk
+from alerts import betterstack_alert
 from db import log_api_metrics
-from alert import alert_if_needed
 
 def check_api(api_config):
     api_name = api_config["api_name"]
@@ -15,7 +15,7 @@ def check_api(api_config):
     success = False
     status_code = None
 
-    # TODO: proactive_checks()
+    # TODO: PHASE 2: proactive_checks()
 
     try:
         response = requests.request(method, url, headers=headers, timeout=10)
@@ -24,12 +24,12 @@ def check_api(api_config):
         success = status_code in expected_status
         if not success:
             error_message = f"Unexpected status: {status_code}"
-            alert_if_needed() # TODO
+            betterstack_alert(error_message)
+
     except Exception as e:
         elapsed_ms = int((time.time() - start) * 1000)
         error_message = str(e)
         sentry_sdk.capture_exception(e)
-        alert_if_needed() # TODO
 
     inserted_ids = log_api_metrics(api_name, status_code, elapsed_ms, success, error_message)
     return {

@@ -1,9 +1,7 @@
 import schedule
 import time
 from api_configs import API_CONFIGS
-from monitor import check_api
-from alert import send_slack_alert
-from db import get_recent_metrics
+from run_check import check_api
 from alerts import check_and_alert_latency
 
 def schedule_jobs():

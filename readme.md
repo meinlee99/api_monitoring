@@ -22,7 +22,7 @@ Please refer to these slides for trade-off discussions, deep dives, and other te
 
 ---
 
-## Key Problems 
+## Pain Points
 - Unhandled API failures flows downstream to users, degrade the user experience and reduce customer satisfaction
 
 - Slow third-party API responses causes latency and impact overall application performance
@@ -84,11 +84,11 @@ Please refer to these slides for trade-off discussions, deep dives, and other te
 
 ## Phase 2: Future Improvements
 
-- Integrate with Grafana or BetterStack for dashboards.
 - Add support for more alerting channels.
 - Enhance proactive checks (e.g., token expiry, rate limit headers).
 - Auto-remediation services for common failure types
-- Add vendor performance analytics.
+- Add vendor performance analytics
+- Authentication & Security
 
 ---
 
