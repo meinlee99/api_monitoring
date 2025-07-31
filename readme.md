@@ -16,8 +16,7 @@ This repository provides a robust system for monitoring the health, latency, and
   Alerts internal teams before users notice outages, reducing Mean Time To Recovery (MTTR).
 - **Faster Root Cause Analysis (RCA):**  
   Historical logs and metrics help determine if issues stem from external dependencies or internal code.
-- **Increased Reliability & Uptime:**  
-  Early detection of slow or failing APIs ensures stable integrations and builds customer trust.
+
 
 ### 🛡️ 2. Preventative
 
@@ -27,18 +26,21 @@ This repository provides a robust system for monitoring the health, latency, and
 - **Alerting & Early Detection:**  
   Use thresholds and error patterns to alert developers early.
   Set smart alerts to minimize noise and maximize impact.
+- **Increased Reliability & Uptime:**  
+  Early detection of slow or failing APIs ensures stable integrations and builds customer trust.
 
-### 🚀 3. Future Enhancements
+
+### 🚀 3. Enhancements
 
 - **Visibility & Observability:**  
   Centralized dashboard shows uptime history, average response times, and failure patterns per API.
 - **API Optimization:**  
   Identify APIs that consistently underperform.
-  Flag vendors with poor SLAs to reconsider, renegotiate, or replace.
+  Flag vendors with poor API SLAs to reconsider, renegotiate, or replace.
 
 ---
 
-## How It Works
+## Phase 1: How It Works
 
 - **API Health Checks:**  
   Scheduled jobs send requests to configured APIs, logging response codes, latency, and errors.
@@ -48,6 +50,29 @@ This repository provides a robust system for monitoring the health, latency, and
   Integrates with Sentry for runtime error capture.
 - **Data Storage:**  
   Metrics are logged to PostgreSQL for historical analysis and dashboarding.
+---
+
+## Alerting Channels
+
+- **Slack:** Engineering channel for real-time notifications.
+- **Email:** Wider ops or platform teams.
+- **PagerDuty:** For critical APIs.
+- **(Optional) SMS/Phone:** For P0 events.
+
+---
+
+## Phase 2: Future Improvements
+
+- Integrate with Grafana or BetterStack for dashboards.
+- Add support for more alerting channels.
+- Enhance proactive checks (e.g., token expiry, rate limit headers).
+- Add vendor performance analytics.
+
+---
+
+## Contributing
+
+Feel free to open issues or submit pull requests for improvements and new features!
 
 ---
 
@@ -76,29 +101,3 @@ This repository provides a robust system for monitoring the health, latency, and
    ```
 
 ---
-
-## Alerting Channels
-
-- **Slack:** Engineering channel for real-time notifications.
-- **Email:** Wider ops or platform teams.
-- **PagerDuty:** For critical APIs.
-- **(Optional) SMS/Phone:** For P0 events.
-
----
-
-## Future Improvements
-
-- Integrate with Grafana or BetterStack for dashboards.
-- Add support for more alerting channels.
-- Enhance proactive checks (e.g., token expiry, rate limit headers).
-- Add vendor performance analytics.
-
----
-
-## Contributing
-
-Feel free to open issues or submit pull requests for improvements and new features!
-
----
-
-##
