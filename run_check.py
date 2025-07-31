@@ -1,10 +1,12 @@
 import requests
 import time
+import logging
 import sentry_sdk
 from alerts import betterstack_alert
 from db import log_api_metrics
 
 def check_api(api_config):
+    logging.info(f"Checking API: {api_config['api_name']} at {time.strftime('%Y-%m-%d %H:%M:%S')}")
     api_name = api_config["api_name"]
     url = api_config["url"]
     method = api_config.get("method", "GET")
@@ -16,12 +18,15 @@ def check_api(api_config):
     status_code = None
 
     # TODO: PHASE 2: proactive_checks()
+    # Sanity checks for warnings
+
 
     try:
         response = requests.request(method, url, headers=headers, timeout=10)
         elapsed_ms = int((time.time() - start) * 1000)
         status_code = response.status_code
         success = status_code in expected_status
+        # Configurable
         if not success:
             error_message = f"Unexpected status: {status_code}"
             betterstack_alert(error_message)
@@ -31,7 +36,9 @@ def check_api(api_config):
         error_message = str(e)
         sentry_sdk.capture_exception(e)
 
-    inserted_ids = log_api_metrics(api_name, status_code, elapsed_ms, success, error_message)
+    inserted_ids = [123]
+    # log_api_metrics(api_name, status_code, elapsed_ms, success, error_message)
+    print("Returning API metrics...")
     return {
         "api_name": api_name,
         "status_code": status_code,

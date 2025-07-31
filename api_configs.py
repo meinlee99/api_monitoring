@@ -7,7 +7,8 @@ API_CONFIGS = [
             "User-Agent": "PostmanMonitoringBot"
         },
         "expected_status_codes": [200],
-        "interval_seconds": 300
+        "interval_seconds": 300,  # run every 5 minutes
+        "max_retries": 1
     },
     {
         "api_name": "OpenWeather",

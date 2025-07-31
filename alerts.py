@@ -2,7 +2,8 @@ import os
 import logging
 import requests
 import sentry_sdk
-# from db import get_recent_metrics
+from db import get_recent_metrics
+from unittest.mock import patch
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 
@@ -14,20 +15,23 @@ BETTERSTACK_WEBHOOK_URL = "https://betterstack.com/api/v1/alerts"  # replace wit
 
 client = WebClient(token=SLACK_TOKEN)
 
-def check_and_alert_latency(api_name, latency_threshold=1000, error_rate_threshold=0.05, minutes=5):
+
+
+@patch('alerts.get_recent_metrics', return_value=[
+    ("example_api", 200, 1500, False, "Timeout error", "2023-10-01 12:00:00")
+])
+def check_and_alert_latency(mock_get_recent_metrics, api_name, latency_threshold=1000, error_rate_threshold=0.05, minutes=5):
     """
     Check recent metrics (within the last 5 minutes)
     for the given API and send an alert if error rate or high latency is detected.
 
     Currently, this function alerts via Slack channels.
     """
+    # print(f"Checking latency for API: {api_name}")
     # Fetch recent metric from Postgres
-    # metrics = get_recent_metrics(api_name, minutes=minutes)
-    # if not metrics:
-    #     return
-
-    # Test metric: (api_name, status_code, latency_ms, success, error_message, created_at)
-    metrics = [("example_api", 200, 1500, False, "Timeout error", "2023-10-01 12:00:00")]
+    metrics = get_recent_metrics(api_name, minutes=minutes)
+    if not metrics:
+        return
 
     # Filter metrics for errors and high latency
     # Assuming metrics is a list of tuples:
@@ -64,6 +68,15 @@ def betterstack_alert(message: str):
         print(f"[BetterStack Alert Exception] {str(e)}")
 
 
+
 if __name__ == "__main__":
-    check_and_alert_latency("example_api", latency_threshold=1000, error_rate_threshold=0.05, minutes=5)
-    logging.info("Alert check completed.")
+    # Mock get_recent_metrics to return your test data
+    with patch('__main__.get_recent_metrics', return_value=[
+        ("example_api", 200, 1500, False, "Timeout error", "2023-10-01 12:00:00")
+    ]):
+        check_and_alert_latency("example_api", latency_threshold=1000, error_rate_threshold=0.05, minutes=5)
+        logging.info("Alert check completed.")
+
+    
+    # Test metric: (api_name, status_code, latency_ms, success, error_message, created_at)
+    # metrics = [("example_api", 200, 1500, False, "Timeout error", "2023-10-01 12:00:00")]
