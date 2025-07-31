@@ -24,19 +24,21 @@ def check_api(api_config):
         success = status_code in expected_status
         if not success:
             error_message = f"Unexpected status: {status_code}"
+            alert_if_needed() # TODO
     except Exception as e:
         elapsed_ms = int((time.time() - start) * 1000)
         error_message = str(e)
         sentry_sdk.capture_exception(e)
         alert_if_needed() # TODO
 
-    log_api_metrics(api_name, status_code, elapsed_ms, success, error_message)
+    inserted_ids = log_api_metrics(api_name, status_code, elapsed_ms, success, error_message)
     return {
         "api_name": api_name,
         "status_code": status_code,
         "latency_ms": elapsed_ms,
         "success": success,
-        "error": error_message
+        "error": error_message,
+        "inserted_ids": inserted_ids
     }
 
 def proactive_checks():
