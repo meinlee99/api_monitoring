@@ -8,6 +8,11 @@ This repository provides a robust system for monitoring the health, latency, and
 
 ## Goals
 
+- User Friendly
+- Build Trust
+- Guarantee Efficiency
+- Drive Refinements
+
 ## Key Use Cases
 
 ### 🛠️ 1. Remediation
@@ -70,9 +75,9 @@ This repository provides a robust system for monitoring the health, latency, and
 
 ---
 
-## Contributing
+## Technical Deep Dive 
 
-Feel free to open issues or submit pull requests for improvements and new features!
+- Please refer to these slides for trade-off discussions, deep dives, and other technical details
 
 ---
 
@@ -99,5 +104,11 @@ Feel free to open issues or submit pull requests for improvements and new featur
    ```
    python scheduler.py
    ```
+
+---
+
+## Contributing
+
+Feel free to open issues or submit pull requests for improvements and new features!
 
 ---
